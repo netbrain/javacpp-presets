@@ -232,7 +232,7 @@ case $PLATFORM in
         if [[ ! -f $PYTHON_BIN_PATH ]]; then
             export PYTHON_BIN_PATH="C:/Program Files/Python36/python.exe"
         fi
-        export BAZEL_VC="C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/"
+        export BAZEL_VC="C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/"
         # try not to use /WHOLEARCHIVE as it crashes link.exe
         export NO_WHOLE_ARCHIVE_OPTION=1
         # disable __forceinline for Eigen to speed up the build
@@ -293,6 +293,7 @@ unset PLATFORM_ARTIFACTS
 unset PLATFORM_INCLUDEPATH
 unset PLATFORM_LINKPATH
 unset PLATFORM_PRELOADPATH
+unset __VSCMD_PREINIT_PATH
 
 bash configure
 bazel build -c opt $BUILDTARGETS --config=monolithic $BUILDFLAGS --spawn_strategy=standalone --genrule_strategy=standalone --output_filter=DONT_MATCH_ANYTHING --verbose_failures
