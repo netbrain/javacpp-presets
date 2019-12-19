@@ -125,7 +125,7 @@ Check \ref tutorial_dnn_yolo "the corresponding tutorial" for more details
 // #define OPENCV_DNN_VERSION_HPP
 
 /** Use with major OpenCV version only. */
-public static final int OPENCV_DNN_API_VERSION = 20190902;
+public static final int OPENCV_DNN_API_VERSION = 20191202;
 
 // #if !defined CV_DOXYGEN && !defined CV_STATIC_ANALYSIS && !defined CV_DNN_DONT_ADD_INLINE_NS
 // #define CV__DNN_INLINE_NS __CV_CAT(dnn4_v, OPENCV_DNN_API_VERSION)
@@ -329,6 +329,12 @@ public static final int OPENCV_DNN_API_VERSION = 20190902;
 // Targeting ../opencv_dnn/TanHLayer.java
 
 
+// Targeting ../opencv_dnn/SwishLayer.java
+
+
+// Targeting ../opencv_dnn/MishLayer.java
+
+
 // Targeting ../opencv_dnn/SigmoidLayer.java
 
 
@@ -461,10 +467,14 @@ public static final int OPENCV_DNN_API_VERSION = 20190902;
          *  DNN_BACKEND_OPENCV otherwise. */
         DNN_BACKEND_DEFAULT = 0,
         DNN_BACKEND_HALIDE = 1,
-        /** Intel's Inference Engine computational backend. */
+        /** Intel's Inference Engine computational backend
+ *  @see setInferenceEngineBackendType */
         DNN_BACKEND_INFERENCE_ENGINE = 2,
         DNN_BACKEND_OPENCV = 3,
-        DNN_BACKEND_VKCOM = 4;
+        DNN_BACKEND_VKCOM = 4,
+        DNN_BACKEND_CUDA = 5;
+// #ifdef __OPENCV_BUILD
+// #endif
 
     /**
      * \brief Enum of target devices for computations.
@@ -478,7 +488,9 @@ public static final int OPENCV_DNN_API_VERSION = 20190902;
         DNN_TARGET_MYRIAD = 3,
         DNN_TARGET_VULKAN = 4,
         /** FPGA device with CPU fallbacks using Inference Engine's Heterogeneous plugin. */
-        DNN_TARGET_FPGA = 5;
+        DNN_TARGET_FPGA = 5,
+        DNN_TARGET_CUDA = 6,
+        DNN_TARGET_CUDA_FP16 = 7;
 
     @Namespace("cv::dnn") public static native @ByVal @Cast("std::vector<std::pair<cv::dnn::Backend,cv::dnn::Target> >*") IntIntPairVector getAvailableBackends();
     @Namespace("cv::dnn") public static native @Cast("cv::dnn::Target*") @StdVector IntPointer getAvailableTargets(@Cast("cv::dnn::Backend") int be);

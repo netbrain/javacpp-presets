@@ -37,9 +37,8 @@ public class VideoReader extends Pointer {
     If no frames has been grabbed (there are no more frames in video file), the methods return false .
     The method throws Exception if error occurs.
      */
-    public native @Cast("bool") boolean nextFrame(@ByVal Mat frame);
-    public native @Cast("bool") boolean nextFrame(@ByVal UMat frame);
-    public native @Cast("bool") boolean nextFrame(@ByVal GpuMat frame);
+    public native @Cast("bool") boolean nextFrame(@ByRef GpuMat frame, @ByRef(nullValue = "Stream::Null()") Stream stream);
+    public native @Cast("bool") boolean nextFrame(@ByRef GpuMat frame);
 
     /** \brief Returns information about video file format.
     */
